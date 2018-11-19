@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import IPInput from './components/ip_input'
+import Home from './home'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <IPInput />
+          <Home />
       </div>
     );
   }

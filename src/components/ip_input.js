@@ -1,33 +1,115 @@
 import React from "react";
-import styled from "styled-components";
-
-const Component = styled.div`
-  padding-top: 5em;
-`;
-const InputInline = styled.div``;
-const Button = styled.button`
-  margin: 2em;
-`;
-const Point = styled.span`
-  padding: 0.975rem 0.375rem 0em 0.375rem;
-`;
+import { InputInline, Point, Input } from "./styled";
 
 class IPInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ip: {
+        first: 0,
+        second: 0,
+        third: 0,
+        fourth: 0
+      }
+    };
+  }
+
+  firstValueInput = e => {
+    this.setState(
+      {
+        ip: {
+          first: e.target.value,
+          second: this.state.ip.second,
+          third: this.state.ip.third,
+          fourth: this.state.ip.fourth
+        }
+      },
+      () => {
+        this.props.callback(this.state.ip);
+      }
+    );
+  };
+
+  secondValueInput = e => {
+    this.setState(
+      {
+        ip: {
+          first: this.state.ip.first,
+          second: e.target.value,
+          third: this.state.ip.third,
+          fourth: this.state.ip.fourth
+        }
+      },
+      () => {
+        this.props.callback(this.state.ip);
+      }
+    );
+  };
+
+  thirdValueInput = e => {
+    this.setState(
+      {
+        ip: {
+          first: this.state.ip.first,
+          second: this.state.ip.second,
+          third: e.target.value,
+          fourth: this.state.ip.fourth
+        }
+      },
+      () => {
+        this.props.callback(this.state.ip);
+      }
+    );
+  };
+
+  fourthValueInput = e => {
+    this.setState(
+      {
+        ip: {
+          first: this.state.ip.first,
+          second: this.state.ip.second,
+          third: this.state.ip.third,
+          fourth: e.target.value
+        }
+      },
+      () => {
+        this.props.callback(this.state.ip);
+      }
+    );
+  };
+
   render() {
     return (
-      <Component className="container">
-      <h2>IP Subnet Calculation</h2><br />
+      <div className="container">
+        <h2>IP Subnet Calculation</h2>
+        <br />
         <InputInline className="input-group">
-          <input className="form-control" type="number" />
+          <Input
+            className="form-control"
+            type="number"
+            name="first"
+            onChange={this.firstValueInput}
+          />
           <Point>.</Point>
-          <input className="form-control" type="number" />
+          <Input
+            className="form-control"
+            type="number"
+            onChange={this.secondValueInput}
+          />
           <Point>.</Point>
-          <input className="form-control" type="number" />
+          <Input
+            className="form-control"
+            type="number"
+            onChange={this.thirdValueInput}
+          />
           <Point>.</Point>
-          <input className="form-control" type="number" />
+          <Input
+            className="form-control"
+            type="number"
+            onChange={this.fourthValueInput}
+          />
         </InputInline>
-        <Button className="btn btn-primary">GO!!</Button>
-      </Component>
+      </div>
     );
   }
 }
