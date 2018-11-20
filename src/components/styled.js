@@ -30,3 +30,6 @@ export const Point = styled.span`
 export const Input = styled.input`
   text-align: center;
 `;
+export const ErrorInput = styled.h3`
+  color: red;
+`
