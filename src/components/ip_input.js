@@ -80,36 +80,33 @@ class IPInput extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <h2>IP Subnet Calculation</h2>
-        <br />
-        <InputInline className="input-group">
-          <Input
-            className="form-control"
-            type="number"
-            name="first"
-            onChange={this.firstValueInput}
-          />
-          <Point>.</Point>
-          <Input
-            className="form-control"
-            type="number"
-            onChange={this.secondValueInput}
-          />
-          <Point>.</Point>
-          <Input
-            className="form-control"
-            type="number"
-            onChange={this.thirdValueInput}
-          />
-          <Point>.</Point>
-          <Input
-            className="form-control"
-            type="number"
-            onChange={this.fourthValueInput}
-          />
-        </InputInline>
-      </div>
+      <InputInline className="container">
+        <Input
+          className="form-control"
+          type="number"
+          min="0"
+          max="255"
+          onChange={this.firstValueInput}
+        />
+        <Point>.</Point>
+        <Input
+          className="form-control"
+          type="number"
+          onChange={this.secondValueInput}
+        />
+        <Point>.</Point>
+        <Input
+          className="form-control"
+          type="number"
+          onChange={this.thirdValueInput}
+        />
+        <Point>.</Point>
+        <Input
+          className="form-control"
+          type="number"
+          onChange={this.fourthValueInput}
+        />
+      </InputInline>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Component, Button } from "./components/styled";
+import { Component, Button, H2 } from "./components/styled";
 import IPInput from "./components/ip_input";
 import HostInput from "./components/host_input";
 
@@ -30,6 +30,7 @@ class Home extends React.Component {
   render() {
     return (
       <Component className="container">
+        <H2>IP Subnet Calculation</H2>
         <IPInput callback={this.callbackIP} />
         <HostInput callback={this.callbackHost}/>
         <Button className="btn btn-primary">GO!!</Button>
