@@ -1,8 +1,8 @@
 import React from "react";
 import { Component, Button, H2, ErrorInput } from "./components/styled";
-import IPInput from "./components/ip_input";
-import HostInput from "./components/host_input";
 import Result from "./components/result";
+
+import InputValue from "./components/input";
 
 class Home extends React.Component {
   constructor(props) {
@@ -31,11 +31,11 @@ class Home extends React.Component {
     console.log(this.state.hosts);
   }
 
-  ipFullFill = () => {
+  ipFullFill = () => {    
     return (
-      this.state.ip.first &&
-      this.state.ip.second &&
-      this.state.ip.third &&
+      this.state.ip.first ||
+      this.state.ip.second ||
+      this.state.ip.third ||
       this.state.ip.fourth
     );
   };
@@ -59,8 +59,7 @@ class Home extends React.Component {
     return (
       <Component className="container">
         <H2>IP Subnet Calculation</H2>
-        <IPInput callback={this.callbackIP} />
-        <HostInput callback={this.callbackHost} />
+        <InputValue callbackhost={this.callbackHost} callbackip={this.callbackIP} />
         <Button className="btn btn-primary" onClick={this.showResult}>
           GO!!
         </Button>

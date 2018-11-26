@@ -1,21 +1,33 @@
 import React from "react";
 import ResultNetworkClass from "./result_network_class";
-import ResultNumberHost from './result_number_host'
+import ResultNumberHost from "./result_number_host";
 
 class Result extends React.Component {
   state = {
-    class: 'A'
-  }
+    class: "A",
+    numberOfHost: 0
+  };
 
-  callbackState = value => {
-    this.setState({class: value})
-  }
+  callbackNetworkClass = value => {
+    this.setState({ class: value });
+  };
+
+  callbackNumberOfHost = value => {
+    this.setState({ numberOfHost: value });
+  };
 
   render() {
     return (
       <div>
-        <ResultNetworkClass ip={this.props.ip} callback={this.callbackState} />
-        <ResultNumberHost host={this.props.host} class={this.state.class} />
+        <ResultNetworkClass
+          ip={this.props.ip}
+          callback={this.callbackNetworkClass}
+        />
+        <ResultNumberHost
+          host={this.props.host}
+          class={this.state.class}
+          callback={this.callbackNumberOfHost}
+        />
       </div>
     );
   }
