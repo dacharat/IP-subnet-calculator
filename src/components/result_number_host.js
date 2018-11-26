@@ -28,12 +28,15 @@ class ResultNumberHost extends React.Component {
     console.log(this.props.class);
 
     if (hosts.type === "host") {
-      let num = (Number.parseInt(hosts) + 1).toString(2);
-      this.setState({ number: num.length });
-    } else if (hosts.type === "network") {
-      console.log('Im here');
+      let num = (Number.parseInt(hosts.number) + 1).toString(2).length;
+      console.log(hosts);
       
-      let networks = (Number.parseInt(hosts) - 1).toString(2).length;
+      this.setState({ number: num });
+      this.props.callback(num);
+    } else if (hosts.type === "network") {
+      console.log("Im here");
+
+      let networks = (Number.parseInt(hosts.number) - 1).toString(2).length;
       let num;
       switch (this.props.class) {
         case "A":
@@ -52,6 +55,7 @@ class ResultNumberHost extends React.Component {
           num = 0;
       }
       this.setState({ number: num });
+      this.props.callback(num);
     }
   };
 
