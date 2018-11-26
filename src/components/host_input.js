@@ -40,10 +40,14 @@ class HostInput extends React.Component {
   render() {
     return (
       <ChooseHosts className="container">
-        <Input className="form-control" type="number" onChange={this.numberChange} />
+        <Input
+          className="form-control"
+          type="number"
+          onChange={this.numberChange}
+        />
         <select className="form-control" onChange={this.typeChange}>
-          <option>Hosts</option>
-          <option>Networks</option>
+          <option value="host">Hosts</option>
+          <option value="network">Networks</option>
         </select>
       </ChooseHosts>
     );
