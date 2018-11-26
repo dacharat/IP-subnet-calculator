@@ -6,24 +6,52 @@ class ResultNumberHost extends React.Component {
   };
 
   componentDidMount() {
-    this.findNumberOfHost(this.props.host.number);
+    this.findNumberOfHost(this.props.host);
   }
 
   componentDidUpdate(previousProps) {
     if (previousProps.host !== this.props.host) {
-      this.findNumberOfHost(this.props.host.number);
+      this.findNumberOfHost(this.props.host);
     }
   }
 
   findNumberOfHost = hosts => {
-    let numberOfHost = 0;
-    while (true) {
-      if (hosts >= Math.pow(2, numberOfHost)) {
-        numberOfHost++;
-      } else {
-        this.setState({ number: numberOfHost });
-        break;
+    // let numberOfHost = 0;
+    // while (true) {
+    //   if (hosts >= Math.pow(2, numberOfHost)) {
+    //     numberOfHost++;
+    //   } else {
+    //     this.setState({ number: numberOfHost });
+    //     break;
+    //   }
+    // }
+    console.log(this.props.class);
+
+    if (hosts.type === "host") {
+      let num = (Number.parseInt(hosts) + 1).toString(2);
+      this.setState({ number: num.length });
+    } else if (hosts.type === "network") {
+      console.log('Im here');
+      
+      let networks = (Number.parseInt(hosts) - 1).toString(2).length;
+      let num;
+      switch (this.props.class) {
+        case "A":
+          num = 24 - networks;
+          break;
+        case "B":
+          num = 16 - networks;
+          break;
+        case "C":
+          num = 8 - networks;
+          break;
+        case "D":
+          num = 0 - networks;
+          break;
+        default:
+          num = 0;
       }
+      this.setState({ number: num });
     }
   };
 
