@@ -3,6 +3,7 @@ import { Component, Button, H2, ErrorInput } from "./components/styled";
 import IPInput from "./components/ip_input";
 import HostInput from "./components/host_input";
 import Result from "./components/result";
+import RTable from "./components/result_table"
 
 class Home extends React.Component {
   constructor(props) {
@@ -68,6 +69,8 @@ class Home extends React.Component {
         {this.state.emptyInput && (
           <ErrorInput>Please input all field</ErrorInput>
         )}
+        <RTable/>
+
       </Component>
     );
   }
