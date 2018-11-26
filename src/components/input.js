@@ -18,9 +18,14 @@ class InputValue extends React.Component {
   handleInput = e => {
     const input = Number.parseInt(e.target.value);
     this.setState({ [e.target.name]: this.limitIPValue(input) }, () => {
-      let test = { first: this.state.first, second: this.state.second, third: this.state.third, fourth: this.state.fourth };
-      console.log('test', test);
-      
+      let test = {
+        first: this.state.first,
+        second: this.state.second,
+        third: this.state.third,
+        fourth: this.state.fourth
+      };
+      console.log("test", test);
+
       this.props.callbackip({
         first: this.state.first,
         second: this.state.second,
@@ -88,9 +93,10 @@ class InputValue extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <InputInline>
           <Input
+            className="form-control"
             type="number"
             onChange={this.handleInput}
             value={this.state.first}
@@ -98,6 +104,7 @@ class InputValue extends React.Component {
           />
           <Point>.</Point>
           <Input
+            className="form-control"
             type="number"
             onChange={this.handleInput}
             value={this.state.second}
@@ -105,6 +112,7 @@ class InputValue extends React.Component {
           />
           <Point>.</Point>
           <Input
+            className="form-control"
             type="number"
             onChange={this.handleInput}
             value={this.state.third}
@@ -112,6 +120,7 @@ class InputValue extends React.Component {
           />
           <Point>.</Point>
           <Input
+            className="form-control"
             type="number"
             onChange={this.handleInput}
             value={this.state.fourth}
@@ -121,11 +130,12 @@ class InputValue extends React.Component {
         <ChooseHosts>
           <Input
             type="number"
+            className="form-control"
             onChange={this.handleHostInput}
             value={this.state.number}
             name="number"
           />
-          <select onChange={this.typeChange}>
+          <select onChange={this.typeChange} className="form-control">
             <option value="host">Hosts</option>
             <option value="network">Networks</option>
           </select>
