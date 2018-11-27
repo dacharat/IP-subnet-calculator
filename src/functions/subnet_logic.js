@@ -36,7 +36,7 @@ function classAHandler(num){
     return result
 }
 
-function classBHandler(ip,num){
+function classBHandler(num){
     let numInBin = num.toString(2)
 
     let numInBinLength = numInBin.length
