@@ -71,6 +71,7 @@ class Home extends React.Component {
         {this.state.emptyInput && (
           <ErrorInput>Please input all field</ErrorInput>
         )}
+        
       </Component>
     );
   }

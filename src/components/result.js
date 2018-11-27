@@ -1,22 +1,35 @@
 import React from "react";
+import {getSubnetArray} from '../functions/subnet_logic'
+import RTable from "./result_table"
 
 // this.props.ip ได้ ip ทั้งก้อน
 class Result extends React.Component {
   state = {
     class: "",
-    number: { host: 0, network: 0 }
+    number: { host: 0, network: 0 },
+    data:[]
   };
 
   async componentDidMount() {
     await this.networkClass();
-    await this.findNumberOfHost(this.props.host);
+    await this.findNumberOfHost(this.props.host);    
+    await this.fetchData()
   }
 
   async componentDidUpdate(previousProps) {
     if (previousProps !== this.props) {
       await this.networkClass();
       await this.findNumberOfHost(this.props.host);
+      await this.fetchData()
     }
+  }
+
+  fetchData = () => {
+    console.log('HOST',this.state.number.host);
+    
+    this.setState({
+      data : getSubnetArray(this.props.ip, this.state.number.network, this.state.number.host)
+    })
   }
 
   networkClass = () => {
@@ -33,7 +46,7 @@ class Result extends React.Component {
     this.setState({ class: className });
   };
 
-  findNumberOfHost = hosts => {
+   findNumberOfHost = hosts => {
     // let numberOfHost = 0;
     // while (true) {
     //   if (hosts >= Math.pow(2, numberOfHost)) {
@@ -64,7 +77,7 @@ class Result extends React.Component {
         default:
           networks = 0;
       }
-      this.setState({ numberOfHost: num, numberOfNetwork: networks });
+      this.setState({number: {host: num, network: networks}});
     } else if (hosts.type === "network") {
       let networks = (Number.parseInt(hosts.number) - 1).toString(2).length;
       let num;
@@ -84,9 +97,20 @@ class Result extends React.Component {
         default:
           num = 0;
       }
-      this.setState({ numberOfHost: num, numberOfNetwork: networks });
+      this.setState({number: {host: num, network: networks}});
     }
   };
+
+  renderTable = () => {
+   console.log(this.props.ip);
+   console.log(this.state.number.host);
+   console.log(this.state.number.network);
+   console.log(this.state.data)
+   
+   return (<RTable data={this.state.data}/>)
+   
+   
+  }
 
   render() {
     return (
@@ -95,8 +119,9 @@ class Result extends React.Component {
           <p>Network class: {this.state.class}</p>
         </div>
         {this.state.class && (
-          <div>this have {this.state.numberOfHost} hosts</div>
+          <div>this have {this.state.number.host} hosts</div>
         )}
+        {this.renderTable()}
       </div>
     );
   }
