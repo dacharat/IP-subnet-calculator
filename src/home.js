@@ -1,6 +1,7 @@
 import React from "react";
-import { Component, Button, H2, ErrorInput } from "./components/styled";
+import { Content, Component, Ico, Button, H2, Head, ErrorInput } from "./components/styled";
 import Result from "./components/result";
+import ico from "./img/math.png"
 
 import InputValue from "./components/input";
 
@@ -26,11 +27,6 @@ class Home extends React.Component {
     this.setState({ hosts: value });
   };
 
-  componentDidUpdate() {
-    // console.log(this.state.ip);
-    // console.log(this.state.hosts);
-  }
-
   ipFullFill = () => {    
     return (
       this.state.ip.first ||
@@ -46,8 +42,6 @@ class Home extends React.Component {
 
   showResult = () => {
     if (this.ipFullFill() && this.hostFilled()){
-      console.log('ip', this.state.ip);
-      console.log('host', this.state.hosts);
       
         this.setState({
           showResult: true,
@@ -61,11 +55,12 @@ class Home extends React.Component {
 
   render() {
     return (
+      <Content>
+        <Head><Ico src={ico}></Ico><H2>IP Subnet Calculator</H2></Head>
       <Component className="container">
-        <H2>IP Subnet Calculation</H2>
         <InputValue callbackhost={this.callbackHost} callbackip={this.callbackIP} />
         <Button className="btn btn-primary" onClick={this.showResult}>
-          GO!!
+          Calculate
         </Button>
         {this.state.showResult && this.state.result}
         {this.state.emptyInput && (
@@ -73,6 +68,7 @@ class Home extends React.Component {
         )}
         
       </Component>
+      </Content>
     );
   }
 }

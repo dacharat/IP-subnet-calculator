@@ -123,7 +123,7 @@ class InputValue extends React.Component {
             value={this.state.number}
             name="number"
           />
-          <select onChange={this.typeChange} className="form-control">
+          <select style={{marginLeft: "15px"}}onChange={this.typeChange} className="form-control">
             <option value="host">Hosts</option>
             <option value="network">Networks</option>
           </select>
