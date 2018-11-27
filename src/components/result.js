@@ -1,36 +1,38 @@
 import React from "react";
-import {getSubnetArray} from '../functions/subnet_logic'
-import RTable from "./result_table"
+import { getSubnetArray } from "../functions/subnet_logic";
+import RTable from "./result_table";
 
 // this.props.ip ได้ ip ทั้งก้อน
 class Result extends React.Component {
   state = {
     class: "",
     number: { host: 0, network: 0 },
-    data:[]
+    data: []
   };
 
   async componentDidMount() {
     await this.networkClass();
-    await this.findNumberOfHost(this.props.host);    
-    await this.fetchData()
+    await this.findNumberOfHost(this.props.host);
+    await this.fetchData();
   }
 
   async componentDidUpdate(previousProps) {
     if (previousProps !== this.props) {
       await this.networkClass();
       await this.findNumberOfHost(this.props.host);
-      await this.fetchData()
+      await this.fetchData();
     }
   }
 
   fetchData = () => {
-    console.log('HOST',this.state.number.host);
-    
     this.setState({
-      data : getSubnetArray(this.props.ip, this.state.number.network, this.state.number.host)
-    })
-  }
+      data: getSubnetArray(
+        this.props.ip,
+        this.state.number.network,
+        this.state.number.host
+      )
+    });
+  };
 
   networkClass = () => {
     let className;
@@ -46,7 +48,7 @@ class Result extends React.Component {
     this.setState({ class: className });
   };
 
-   findNumberOfHost = hosts => {
+  findNumberOfHost = hosts => {
     // let numberOfHost = 0;
     // while (true) {
     //   if (hosts >= Math.pow(2, numberOfHost)) {
@@ -59,13 +61,12 @@ class Result extends React.Component {
     if (hosts.type === "host") {
       let num = (Number.parseInt(hosts.number) + 1).toString(2).length;
       let networks;
-      console.log('CASE: ', this.state.class);
+      console.log("CASE: ", this.state.class);
       switch (this.state.class) {
         case "A":
           networks = 24 - num;
           break;
         case "B":
-          
           networks = 16 - num;
           break;
         case "C":
@@ -77,7 +78,7 @@ class Result extends React.Component {
         default:
           networks = 0;
       }
-      this.setState({number: {host: num, network: networks}});
+      this.setState({ number: { host: num, network: networks } });
     } else if (hosts.type === "network") {
       let networks = (Number.parseInt(hosts.number) - 1).toString(2).length;
       let num;
@@ -97,30 +98,38 @@ class Result extends React.Component {
         default:
           num = 0;
       }
-      this.setState({number: {host: num, network: networks}});
+      this.setState({ number: { host: num, network: networks } });
     }
   };
 
   renderTable = () => {
-   console.log(this.props.ip);
-   console.log(this.state.number.host);
-   console.log(this.state.number.network);
-   console.log(this.state.data)
-   
-   return (<RTable data={this.state.data}/>)
-   
-   
-  }
+    console.log(this.props.ip);
+    console.log(this.state.number.host);
+    console.log(this.state.number.network);
+    console.log(this.state.data);
+
+    return <RTable data={this.state.data} />;
+  };
 
   render() {
     return (
       <div>
-        <div>
-          <p>Network class: {this.state.class}</p>
+        <h4>Network class: {this.state.class}</h4>
+        <div className="col-md-6" />
+        <div className="row">
+          <div className="col-md-6">
+            <h4>
+              Number of <u>subnets</u> {this.state.number.network}{" "}
+              bits/ {Math.pow(2, this.state.number.network)} networks
+            </h4>
+          </div>
+          <div className="col-md-6">
+            <h4>
+              Number of <u>hosts</u> {this.state.number.host} bits/{" "}
+              {Math.pow(2, this.state.number.host)} hosts
+            </h4>
+          </div>
         </div>
-        {this.state.class && (
-          <div>this have {this.state.number.host} hosts</div>
-        )}
         {this.renderTable()}
       </div>
     );
