@@ -2,7 +2,7 @@ import React from "react";
 
 class ResultNumberHost extends React.Component {
   state = {
-    number: 0
+    numberOfHost: 0
   };
 
   componentDidMount() {
@@ -25,17 +25,31 @@ class ResultNumberHost extends React.Component {
     //     break;
     //   }
     // }
-    console.log(this.props.class);
-
     if (hosts.type === "host") {
       let num = (Number.parseInt(hosts.number) + 1).toString(2).length;
-      console.log(hosts);
-      
-      this.setState({ number: num });
-      this.props.callback(num);
+      let networks;
+      switch (this.props.class) {
+        case "A":
+          networks = 24 - num;
+          break;
+        case "B":
+          networks = 16 - num;
+          break;
+        case "C":
+          networks = 8 - num;
+          break;
+        case "D":
+          networks = 0 - num;
+          break;
+        default:
+          networks = 0;
+      }
+      this.setState({ numberOfHost: num, numberOfNetwork: networks });
+      this.props.callback({
+        numberOfHost: num,
+        numberOfNetwork: networks
+      });
     } else if (hosts.type === "network") {
-      console.log("Im here");
-
       let networks = (Number.parseInt(hosts.number) - 1).toString(2).length;
       let num;
       switch (this.props.class) {
@@ -54,13 +68,16 @@ class ResultNumberHost extends React.Component {
         default:
           num = 0;
       }
-      this.setState({ number: num });
-      this.props.callback(num);
+      this.setState({ numberOfHost: num, numberOfNetwork: networks });
+      this.props.callback({
+        numberOfHost: num,
+        numberOfNetwork: networks
+      });
     }
   };
 
   render() {
-    return <div>this have {this.state.number} hosts</div>;
+    return <div>this have {this.state.numberOfHost} hosts</div>;
   }
 }
 export default ResultNumberHost;

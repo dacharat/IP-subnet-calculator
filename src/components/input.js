@@ -11,21 +11,9 @@ class InputValue extends React.Component {
     type: "host"
   };
 
-  handleSubmit = e => {
-    console.log("55");
-  };
-
   handleInput = e => {
     const input = Number.parseInt(e.target.value);
     this.setState({ [e.target.name]: this.limitIPValue(input) }, () => {
-      let test = {
-        first: this.state.first,
-        second: this.state.second,
-        third: this.state.third,
-        fourth: this.state.fourth
-      };
-      console.log("test", test);
-
       this.props.callbackip({
         first: this.state.first,
         second: this.state.second,

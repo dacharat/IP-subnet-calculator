@@ -27,8 +27,8 @@ class Home extends React.Component {
   };
 
   componentDidUpdate() {
-    console.log(this.state.ip);
-    console.log(this.state.hosts);
+    // console.log(this.state.ip);
+    // console.log(this.state.hosts);
   }
 
   ipFullFill = () => {    
@@ -45,12 +45,16 @@ class Home extends React.Component {
   };
 
   showResult = () => {
-    if (this.ipFullFill() && this.hostFilled())
-      this.setState({
-        showResult: true,
-        emptyInput: false,
-        result: <Result ip={this.state.ip} host={this.state.hosts} />
-      });
+    if (this.ipFullFill() && this.hostFilled()){
+      console.log('ip', this.state.ip);
+      console.log('host', this.state.hosts);
+      
+        this.setState({
+          showResult: true,
+          emptyInput: false,
+          result: <Result ip={this.state.ip} host={this.state.hosts} />
+        });
+    }
     else this.setState({ emptyInput: true, showResult: false });
     this.forceUpdate();
   };
