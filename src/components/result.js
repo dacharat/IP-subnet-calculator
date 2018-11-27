@@ -119,13 +119,13 @@ class Result extends React.Component {
         <div className="row">
           <div className="col-md-6">
             <h4>
-              Number of <strong>subnets</strong> {this.state.number.network}{" "}
+              Number of <u>subnets</u> {this.state.number.network}{" "}
               bits/ {Math.pow(2, this.state.number.network)} networks
             </h4>
           </div>
           <div className="col-md-6">
             <h4>
-              Number of <strong>hosts</strong> {this.state.number.host} bits/{" "}
+              Number of <u>hosts</u> {this.state.number.host} bits/{" "}
               {Math.pow(2, this.state.number.host)} hosts
             </h4>
           </div>
