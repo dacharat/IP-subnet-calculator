@@ -13,15 +13,19 @@ export default class RTable extends Component {
 
     generate = ()=> {
         let body = []
-        for(let i = 0; i < 5; i++) {
-            body.push(<tr>
-                <th scope="row">{i+1}</th>
-                <td>*</td>
-                <td>*</td>
-                <td>*</td>
-                <td>*</td>
-            </tr>)
-        }
+        let data = this.props.data
+
+        data.map(element => {
+            body.push(
+                <tr>
+                <th scope="row">{element.subnet}</th>
+                <td>{element.subnetID}</td>
+                <td>{element.firstAdd}</td>
+                <td>{element.lastAdd}</td>
+                <td>{element.broadcast}</td>
+            </tr>
+            )
+        });
         return body
     }
 

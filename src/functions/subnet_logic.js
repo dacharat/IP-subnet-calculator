@@ -36,7 +36,7 @@ function classAHandler(num){
     return result
 }
 
-function classBHandler(ip,num){
+function classBHandler(num){
     let numInBin = num.toString(2)
 
     let numInBinLength = numInBin.length
@@ -52,7 +52,7 @@ function classBHandler(ip,num){
 
 /**
  * Get the array of each subnet in type of object.
- * @param {String} ip string of ip that is constant.
+ * @param {String} ip object of ip that is constant.
  * @param {Number} network number of bit that we use in network.
  * @param {Number} host number of bit that we use in host.
  * @returns {Object} Json of subnet that have these properties (subnet,subnetID,firstAdd,lastAdd,broadcast)

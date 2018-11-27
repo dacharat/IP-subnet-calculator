@@ -1,7 +1,6 @@
 import React from "react";
 import { Component, Button, H2, ErrorInput } from "./components/styled";
 import Result from "./components/result";
-import RTable from "./components/result_table"
 
 import InputValue from "./components/input";
 
@@ -13,8 +12,7 @@ class Home extends React.Component {
       hosts: {},
       showResult: false,
       emptyInput: false,
-      result: <Result />,
-      tableVisible : false
+      result: <Result />
     };
   }
 
@@ -59,19 +57,7 @@ class Home extends React.Component {
     }
     else this.setState({ emptyInput: true, showResult: false });
     this.forceUpdate();
-    this.toggleTable();
   };
-
-  toggleTable = () => {
-    this.setState({
-      tableVisible : !this.state.tableVisible
-    })
-  }
-
-  showTable = () => {
-    if(this.state.tableVisible) return <RTable/>
-    return
-  }
 
   render() {
     return (
@@ -85,7 +71,7 @@ class Home extends React.Component {
         {this.state.emptyInput && (
           <ErrorInput>Please input all field</ErrorInput>
         )}
-        {this.showTable()}
+        
       </Component>
     );
   }
