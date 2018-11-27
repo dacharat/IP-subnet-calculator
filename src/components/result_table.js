@@ -7,9 +7,6 @@ const Block = styled.div`
 `
 
 export default class RTable extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     generate = ()=> {
         let body = []
