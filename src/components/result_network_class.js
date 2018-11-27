@@ -2,42 +2,44 @@ import React from "react";
 
 class ResultNetworkClass extends React.Component {
   state = {
-    class: ''
-  }
+    class: ""
+  };
 
   componentDidMount() {
-    this.networkClass()
+    this.networkClass();
   }
 
   componentDidUpdate(previousProps) {
     if (previousProps.ip !== this.props.ip) {
-      this.networkClass()
+      this.networkClass();
     }
   }
 
   networkClass = () => {
+    let className;
     if (this.props.ip.first < 128) {
-      this.setState({ class: 'A' })
+      className = "A";
+    } else if (this.props.ip.first < 191) {
+      className = "B";
+    } else if (this.props.ip.first < 255) {
+      className = "C";
+    } else {
+      className = "D";
     }
-    else if (this.props.ip.first < 191) {
-      this.setState({ class: 'B' })
-    }
-    else if (this.props.ip.first < 255) {
-      this.setState({ class: 'C' })
-    }
-    else {
-      this.setState({ class: 'D' })
-    }
-  }
+    this.setState({ class: className });
+    this.props.callback(className);
+  };
 
   comvertToBinary = () => {
     (+this.props.ip.first).toString(2);
-  }
+  };
 
   render() {
-    return <div>
-      <p>Network class: {this.state.class}</p>
-    </div>;
+    return (
+      <div>
+        <p>Network class: {this.state.class}</p>
+      </div>
+    );
   }
 }
 
