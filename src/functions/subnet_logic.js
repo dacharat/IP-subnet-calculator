@@ -2,13 +2,13 @@
 function numToIPSubnet(ipObject,num){
     let result = num
     //Class A
-    if(num > Math.pow(2,16)){
+    if(num >= Math.pow(2,16)){
         let ip = ipObject.first
         result = ip+'.'+classAHandler(num)
         return result
     }
     //Class B
-    else if(num > Math.pow(2,8)){
+    else if(num >= Math.pow(2,8)){
         let ip = ipObject.first+'.'+ipObject.second
         result = ip+'.'+classBHandler(num)
         return result
