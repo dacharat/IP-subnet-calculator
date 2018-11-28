@@ -28,7 +28,7 @@ export default class RTable extends Component {
   render() {
     return (
       <Block>
-        <Table bordered hover dark>
+        <Table bordered hover dark responsive>
           <thead>
             <tr>
               <th>Subnet</th>
