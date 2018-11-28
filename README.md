@@ -6,6 +6,11 @@
 ### Description 
 We create this subnet-calculator web application to help those who want to manage their IP in company or organization to easily calculate subnetworks for specific hosts number or subnetworks number and to recall the knowledge that we have learnt in class.
 
+### Tools and Language
+1. VScode
+2. ReactJS
+3. Firebase
+
 ### member 
 1. Dacharat Pankong 5910546643
 2. Non Puthikanon 5910545710
