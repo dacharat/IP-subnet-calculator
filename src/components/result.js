@@ -40,7 +40,7 @@ class Result extends React.Component {
       className = "A";
       this.props.ip.second = '0'
       this.props.ip.third = '0'
-    } else if (this.props.ip.first < 191) {
+    } else if (this.props.ip.first < 192) {
       className = "B";
       this.props.ip.third = '0'
     } else if (this.props.ip.first < 255) {

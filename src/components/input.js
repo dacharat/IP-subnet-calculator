@@ -70,7 +70,7 @@ class InputValue extends React.Component {
   maxValue = () => {
     if (this.state.first < 128) {
       return 16777215;
-    } else if (this.state.first < 191) {
+    } else if (this.state.first < 192) {
       return 65535;
     } else if (this.state.first < 255) {
       return 255;
