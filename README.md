@@ -19,5 +19,5 @@ We create this subnet-calculator web application to help those who want to manag
 ### Hot to use
 1. Input ip number to the first line
 2. Input number of hosts or networks that you want.
-3. Click `GO` button and see the result!!
+3. Click `Calculate` button and see the result!!
 
